@@ -215,6 +215,7 @@ namespace WindowsFormsApplication1
                         serialPort1.DiscardOutBuffer();
                         button_Send.Enabled = true;
                         isOpenCom = true;
+                        serialPort1.DataReceived += serialPort1_DataReceived;
                         if (mode == 0)
                         {
                             button_SendAfterClear.Enabled = true;
@@ -239,6 +240,7 @@ namespace WindowsFormsApplication1
             {
                 try
                 {
+                    serialPort1.DataReceived -= serialPort1_DataReceived;
                     serialPort1.DiscardInBuffer();
                     serialPort1.DiscardOutBuffer();
                     serialPort1.Close();
@@ -365,14 +367,19 @@ namespace WindowsFormsApplication1
             }
         }
 
+        int buffer_Num_SerialPort = 0;
+        byte[] temp_SerialPort;
+        //Task Serial_Data_Process = new Task(Display_Receive);
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            int buffer_Num = serialPort1.BytesToRead;
-            byte[] temp = new byte[buffer_Num];
-            serialPort1.Read(temp, 0, buffer_Num);
-            Receive_Message_list.AddRange(temp);
-            undisplay_num = buffer_Num;
+            buffer_Num_SerialPort = serialPort1.BytesToRead;
+            temp_SerialPort = new byte[buffer_Num_SerialPort];
+            serialPort1.Read(temp_SerialPort, 0, buffer_Num_SerialPort);
+            Receive_Message_list.AddRange(temp_SerialPort);
+            undisplay_num = buffer_Num_SerialPort;
             Display_Receive();
+
+            //Serial_Data_Process.Start();
             /*
             if (mode == 0)
             {
@@ -397,8 +404,10 @@ namespace WindowsFormsApplication1
         }
 
         private delegate void myDisplay();
-        
 
+
+        byte[] byte_to_string;
+        StringBuilder strH = new StringBuilder();
         void Display_Receive()
         {
             textBox_Receive.Invoke(new MethodInvoker(() => {
@@ -415,26 +424,26 @@ namespace WindowsFormsApplication1
                 if (!checkBox_ReceiveHex.Checked)
                 {
                     //ASCII显示
-                    byte[] byte_to_string = new byte[undisplay_num];
+                    byte_to_string = new byte[undisplay_num];
                     Receive_Message_list.CopyTo(displayed_num, byte_to_string, 0, undisplay_num);
-                    textBox_Receive.Text += System.Text.Encoding.Default.GetString(byte_to_string);
+                    textBox_Receive.AppendText( System.Text.Encoding.Default.GetString(byte_to_string));
                 }
                 else
                 {
                     if (!checkBox_LineFeed.Checked)
                     {
                         //HEX显示，但不换行
-                        StringBuilder strH = new StringBuilder();
+                        strH.Clear();
                         for (int i = 0; i < undisplay_num; i++)
                         {
                             strH.Append(Receive_Message_list[displayed_num + i].ToString("X2"));
                             strH.Append(" ");
                         }
-                        textBox_Receive.Text += strH.ToString();
+                        textBox_Receive.AppendText( strH.ToString());
                     }
                     else
                     {
-                        StringBuilder strH = new StringBuilder();
+                        strH.Clear();
                         if (isLength)
                         {
                             //HEX显示，按长度换行
@@ -447,7 +456,7 @@ namespace WindowsFormsApplication1
                                     strH.Append("\r\n");
                                 }
                             }
-                            textBox_Receive.Text += strH.ToString();
+                            textBox_Receive.AppendText(strH.ToString());
                         }
                         if (isSymbol)
                         {
@@ -461,7 +470,7 @@ namespace WindowsFormsApplication1
                                     strH.Append("\r\n");
                                 }
                             }
-                            textBox_Receive.Text += strH.ToString();
+                            textBox_Receive.AppendText(strH.ToString());
                         }
                     }
                 }
