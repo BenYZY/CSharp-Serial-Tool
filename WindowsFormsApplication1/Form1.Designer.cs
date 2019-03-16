@@ -204,7 +204,7 @@
             this.comboBox_Com.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboBox_Com.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Com.FormattingEnabled = true;
-            this.comboBox_Com.Location = new System.Drawing.Point(83, 5);
+            this.comboBox_Com.Location = new System.Drawing.Point(83, 9);
             this.comboBox_Com.Name = "comboBox_Com";
             this.comboBox_Com.Size = new System.Drawing.Size(81, 28);
             this.comboBox_Com.TabIndex = 1;
@@ -299,7 +299,7 @@
             "115200",
             "128000",
             "256000"});
-            this.comboBox_Band.Location = new System.Drawing.Point(83, 81);
+            this.comboBox_Band.Location = new System.Drawing.Point(83, 85);
             this.comboBox_Band.Name = "comboBox_Band";
             this.comboBox_Band.Size = new System.Drawing.Size(81, 28);
             this.comboBox_Band.TabIndex = 9;
@@ -315,7 +315,7 @@
             "6",
             "7",
             "8"});
-            this.comboBox_DataBit.Location = new System.Drawing.Point(83, 119);
+            this.comboBox_DataBit.Location = new System.Drawing.Point(83, 123);
             this.comboBox_DataBit.Name = "comboBox_DataBit";
             this.comboBox_DataBit.Size = new System.Drawing.Size(81, 28);
             this.comboBox_DataBit.TabIndex = 10;
@@ -330,7 +330,7 @@
             "1",
             "1.5",
             "2"});
-            this.comboBox_StopBit.Location = new System.Drawing.Point(83, 157);
+            this.comboBox_StopBit.Location = new System.Drawing.Point(83, 161);
             this.comboBox_StopBit.Name = "comboBox_StopBit";
             this.comboBox_StopBit.Size = new System.Drawing.Size(81, 28);
             this.comboBox_StopBit.TabIndex = 11;
@@ -347,7 +347,7 @@
             "Even",
             "Mask",
             "Space"});
-            this.comboBox_CheckBit.Location = new System.Drawing.Point(83, 195);
+            this.comboBox_CheckBit.Location = new System.Drawing.Point(83, 199);
             this.comboBox_CheckBit.Name = "comboBox_CheckBit";
             this.comboBox_CheckBit.Size = new System.Drawing.Size(81, 28);
             this.comboBox_CheckBit.TabIndex = 12;
@@ -364,7 +364,7 @@
             "XonXoff",
             "RequestToSend",
             "RequestToSendXonXoff"});
-            this.comboBox_Handshake.Location = new System.Drawing.Point(83, 233);
+            this.comboBox_Handshake.Location = new System.Drawing.Point(83, 237);
             this.comboBox_Handshake.Name = "comboBox_Handshake";
             this.comboBox_Handshake.Size = new System.Drawing.Size(81, 28);
             this.comboBox_Handshake.TabIndex = 13;
@@ -986,7 +986,7 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "串口调试软件（严震宇）";
+            this.Text = "串口调试软件（严震宇）V1.3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
