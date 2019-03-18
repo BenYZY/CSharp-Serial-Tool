@@ -971,7 +971,7 @@
             // 
             // timer2
             // 
-            this.timer2.Interval = 200;
+            this.timer2.Interval = 50;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
@@ -986,7 +986,7 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "串口调试软件（严震宇）";
+            this.Text = "串口调试软件（严震宇）V1.3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

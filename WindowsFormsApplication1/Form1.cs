@@ -16,6 +16,7 @@ using System.Diagnostics;
 
 namespace WindowsFormsApplication1
 {
+    刮刮西瓜瓜挂怪爱刮刮
     public partial class Form1 : Form
     {
         List<byte> Receive_Message_list = new List<byte>();  //store receive byte type message
@@ -216,6 +217,7 @@ namespace WindowsFormsApplication1
                         button_Send.Enabled = true;
                         isOpenCom = true;
                         serialPort1.DataReceived += serialPort1_DataReceived;
+                        timer2.Enabled = true;
                         if (mode == 0)
                         {
                             button_SendAfterClear.Enabled = true;
@@ -232,6 +234,7 @@ namespace WindowsFormsApplication1
                 catch (Exception ex)
                 {
                     ComBack_Origin();
+                    timer2.Enabled = false;
                     toolStripStatusLabel_Com.Text = "串口状态:" + ex.Message;
                     return;
                 }
@@ -241,6 +244,7 @@ namespace WindowsFormsApplication1
                 try
                 {
                     serialPort1.DataReceived -= serialPort1_DataReceived;
+                    timer2.Enabled = false;
                     serialPort1.DiscardInBuffer();
                     serialPort1.DiscardOutBuffer();
                     serialPort1.Close();
@@ -259,6 +263,7 @@ namespace WindowsFormsApplication1
                 catch (Exception ex)
                 {
                     ComBack_Origin();
+                    timer2.Enabled = false;
                     toolStripStatusLabel_Com.Text = "串口状态:" + ex.Message;
                     return;
                 }
@@ -376,31 +381,10 @@ namespace WindowsFormsApplication1
             temp_SerialPort = new byte[buffer_Num_SerialPort];
             serialPort1.Read(temp_SerialPort, 0, buffer_Num_SerialPort);
             Receive_Message_list.AddRange(temp_SerialPort);
-            undisplay_num = buffer_Num_SerialPort;
-            Display_Receive();
+            //undisplay_num = buffer_Num_SerialPort;
+            //Display_Receive();
 
             //Serial_Data_Process.Start();
-            /*
-            if (mode == 0)
-            {
-                //Display_Receive();
-                //if (!Data_Process_Completed)
-                //{
-                //    return;
-                //}
-                //Data_Process_Completed = false;
-
-                //UI_Update.BeginInvoke(null, null);
-                myDisplay UI_Update = new myDisplay(Display_Receive);
-                this.BeginInvoke(UI_Update);
-            }
-            else
-            {
-                //UI_Update = new myDisplay(Display_TestReceive);
-                //UI_Update.BeginInvoke(null, null);
-                //Display_TestReceive();
-            }
-            */
         }
 
         private delegate void myDisplay();
@@ -410,17 +394,14 @@ namespace WindowsFormsApplication1
         StringBuilder strH = new StringBuilder();
         void Display_Receive()
         {
+            if(displayed_num >= Receive_Message_list.Count)
+            {
+                return;
+            }
+
+            undisplay_num = Receive_Message_list.Count - displayed_num;
+
             textBox_Receive.Invoke(new MethodInvoker(() => {
-                
-
-                //byte[] receByte;
-                //receByte = new byte[display_num_cur - display_num_pre];
-                //receByte = new byte[displayed_num];
-                //for (int i = 0; i < displayed_num; i++)
-                //{
-                //    receByte[i] = Receive_Message_list[i];
-                //}
-
                 if (!checkBox_ReceiveHex.Checked)
                 {
                     //ASCII显示
