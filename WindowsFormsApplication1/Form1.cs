@@ -393,6 +393,7 @@ namespace WindowsFormsApplication1
 
         byte[] byte_to_string;
         StringBuilder strH = new StringBuilder();
+        //定时刷新显示数据，只要显示的字节与接收list的字节数不一致，就更新显示，并更新显示字节数
         void Display_Receive()
         {
             if(displayed_num >= Receive_Message_list.Count)
