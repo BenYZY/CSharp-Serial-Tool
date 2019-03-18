@@ -18,7 +18,6 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        再试一次刮刮西瓜瓜瓜瓜爱孤寡
         List<byte> Receive_Message_list = new List<byte>();  //store receive byte type message
         string Send_Message_string;                     //store string type send message
         string Send_Message_hex;                        //store hex type send message
