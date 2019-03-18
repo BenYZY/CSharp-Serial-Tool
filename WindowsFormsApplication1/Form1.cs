@@ -16,6 +16,7 @@ using System.Diagnostics;
 
 namespace WindowsFormsApplication1
 {
+    HUAWEI
     刮刮西瓜瓜挂怪爱刮刮
     public partial class Form1 : Form
     {
