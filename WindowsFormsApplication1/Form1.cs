@@ -16,7 +16,6 @@ using System.Diagnostics;
 
 namespace WindowsFormsApplication1
 {
-    刮刮西瓜瓜挂怪爱刮刮
     public partial class Form1 : Form
     {
         List<byte> Receive_Message_list = new List<byte>();  //store receive byte type message
@@ -375,6 +374,8 @@ namespace WindowsFormsApplication1
         int buffer_Num_SerialPort = 0;
         byte[] temp_SerialPort;
         //Task Serial_Data_Process = new Task(Display_Receive);
+
+        //串口线程负责接收所有数据，timer function负责显示定时刷新数据，只要刷新率保证人眼无法识别即可
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             buffer_Num_SerialPort = serialPort1.BytesToRead;
