@@ -16,11 +16,6 @@ using System.Diagnostics;
 
 namespace WindowsFormsApplication1
 {
-<<<<<<< HEAD
-=======
-    HUAWEI
-    刮刮西瓜瓜挂怪爱刮刮
->>>>>>> 637de356b2e135524ad0c4ca0cddc8845357a40e
     public partial class Form1 : Form
     {
         List<byte> Receive_Message_list = new List<byte>();  //store receive byte type message
